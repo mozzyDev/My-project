@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SphereController : MonoBehaviour
 {
@@ -18,8 +19,7 @@ public class SphereController : MonoBehaviour
     {
         if(isRigidbody = TryGetComponent<Rigidbody>(out rb))
         {
-            rb.maxAngularVelocity = maximumAngularVelocity;
-            Debug.Log(rb.maxAngularVelocity);
+            rb.maxAngularVelocity = maximumAngularVelocity;           
         }
     }
 
@@ -28,6 +28,7 @@ public class SphereController : MonoBehaviour
     {
         float Hdirection;
         float Vdirection;
+        float respawn = -10;
 
         if(isRigidbody && (Hdirection = Input.GetAxis("Horizontal")) != 0)
         {
@@ -37,6 +38,11 @@ public class SphereController : MonoBehaviour
         if (isRigidbody && (Vdirection = Input.GetAxis("Vertical")) != 0)
         {
             rb.AddTorque(Vdirection * Time.deltaTime * speed, 0 , 0);
+        }
+
+        if(transform.position.y <= respawn)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
     }

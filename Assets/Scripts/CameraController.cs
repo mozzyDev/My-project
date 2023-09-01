@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    //public Transform ballTransform;
     public GameObject sphereObject;
     public Vector3 distance;
     public float lookUp;
@@ -27,5 +26,6 @@ public class CameraController : MonoBehaviour
         transform.LookAt(sphereObject.transform.position);
         transform.Rotate(-lookUp, 0, 0);
     }
+
 
 }
